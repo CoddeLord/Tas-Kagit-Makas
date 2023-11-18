@@ -1,17 +1,39 @@
-// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
-// then press Enter. You can now see whitespace characters in your code.
+import java.util.ArrayList;
+import java.util.Random;
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-        // Press Alt+Enter with your caret at the highlighted text to see how
-        // IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        Scanner scanner = new Scanner(System.in);
+        Random random = new Random();
+        ArrayList<String> arrayList = new ArrayList<>();
+        arrayList.add("taş");
+        arrayList.add("kağıt");
+        arrayList.add("makas");
 
-        // Press Shift+F10 or click the green arrow button in the gutter to run the code.
-        for (int i = 1; i <= 5; i++) {
+        int size = arrayList.size();
+        int randomIndex = random.nextInt(size);
+        String randomValue = arrayList.get(randomIndex);
 
-            // Press Shift+F9 to start debugging your code. We have set one breakpoint
-            // for you, but you can always add more by pressing Ctrl+F8.
-            System.out.println("i = " + i);
+        System.out.println("Oyunumuz Başlıyor \nBirini seçin: 'taş-kağıt-makas'");
+        System.out.println("Bilgisayarın Seçimi: " + randomValue);
+
+        while (true) {
+            String oyuncuSecimi = scanner.next();
+
+            if (randomValue.equals(oyuncuSecimi)) {
+                System.out.println("Berabere");
+            } else if ((randomValue.equals("taş") && oyuncuSecimi.equals("makas")) ||
+                    (randomValue.equals("kağıt") && oyuncuSecimi.equals("taş")) ||
+                    (randomValue.equals("makas") && oyuncuSecimi.equals("kağıt"))) {
+                System.out.println("Bilgisayar Kazandı. Seçilen: " + randomValue);
+                break; // Döngüyü sonlandır
+            } else {
+                System.out.println("Oyuncu Kazandı. Seçilen: " + oyuncuSecimi);
+                break; // Döngüyü sonlandır
+            }
         }
+        scanner.close();
     }
 }
+
